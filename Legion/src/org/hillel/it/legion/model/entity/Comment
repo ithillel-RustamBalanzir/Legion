@@ -1,0 +1,60 @@
+package org.hillel.it.legion.model.entity;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Comment extends BaseEntity{
+	
+		private String comment;
+		private int rating;
+		private ArrayList<Comment> replies;
+		private Comment isReplyTo;
+		
+			
+		public Comment(User createdBy, String comment){
+			this.createdBy = createdBy;		// this is a placeholder. Should be modified.
+			this.createdAt = new Date();
+			this.comment = comment;
+			this.replies = new ArrayList<Comment>();
+			}
+		
+		
+		public void deleteComment(String comment) {
+			
+			
+		}
+		
+		public void likeComment(int rating){
+			rating++;
+		}
+		
+		public void dislikeComment(int rating){
+			rating--;
+		}
+		
+		public void reply(Comment reply){
+			Comment newReply = new Comment(createdBy, comment);
+			User name = createdBy;		// should be modified
+			this.createdAt = new Date();  // should be modified
+			newReply.setIsReplyTo(reply);
+			replies.add(newReply);
+		}
+
+		
+		public String getComment(){
+			return comment;
+		}
+		
+		public int getRating(){
+			return rating;
+		}
+		
+		public Comment getIsReplyTo() {
+			return isReplyTo;
+		}
+
+		public void setIsReplyTo(Comment isReplyTo) {
+			this.isReplyTo = isReplyTo;
+		}
+		
+}
